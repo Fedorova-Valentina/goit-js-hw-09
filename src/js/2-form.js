@@ -22,13 +22,18 @@ if (savedData) {
 form.addEventListener('input', event => {
   const { name, value } = event.target;
 
-  formData[name] = value.trim();
+  formData[name] = value;
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 });
 
 form.addEventListener('submit', event => {
   event.preventDefault();
+
+  const trimmedData = {
+    email: formData.email.trim(),
+    message: formData.message.trim(),
+  };
 
   if (!formData.email || !formData.message) {
     alert('Fill please all fields');
